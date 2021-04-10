@@ -1,0 +1,6 @@
+devel_space: /home/dushyanthganesan/ais_ws/devel
+install: false
+install_space: /home/dushyanthganesan/ais_ws/install
+profile: default
+source_space: /home/dushyanthganesan/ais_ws/src
+workspace: /home/dushyanthganesan/ais_ws
