@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(planning)
+project(point_follower)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,9 +8,14 @@ project(planning)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  nav_msgs
   roscpp
   rospy
+  sensor_msgs
+  stage_ros
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -124,6 +129,9 @@ include_directories(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/beginner_tutorials.cpp
 # )
+
+add_executable(path_planner src/path_planner.cpp)
+target_link_libraries(path_planner ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
