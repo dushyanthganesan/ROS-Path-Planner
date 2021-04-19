@@ -1,5 +1,5 @@
-.vscode
-.catkin_tools
-build
-devel
-logs
+.vscode/
+.catkin_tools/
+build/
+devel/
+logs/
