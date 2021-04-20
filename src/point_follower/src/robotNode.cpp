@@ -3,6 +3,7 @@
   #include <iostream>
   #include <ros/ros.h>
   #include <tf2_ros/transform_broadcaster.h>
+  #include <tf2_ros/static_transform_broadcaster.h>
   #include <geometry_msgs/TransformStamped.h>
   #include <geometry_msgs/Pose2D.h>
   #include <tf2/LinearMath/Quaternion.h>
@@ -12,7 +13,7 @@
 
   using namespace std;
 
-  class planningNode {
+  class robotNode {
     private:
     ros::NodeHandle nh;
 
@@ -20,9 +21,12 @@
     ros::Subscriber vel_sub;
     ros::Publisher odom_pub;
     tf2_ros::TransformBroadcaster tf_broadcaster;
-    geometry_msgs::TransformStamped transformStamped;
+    tf2_ros::StaticTransformBroadcaster static_tf_broadcaster;
+    geometry_msgs::TransformStamped odom_tf;
+    geometry_msgs::TransformStamped world_tf;
  
-    float vel, angular_vel;
+    float vel = 0;
+    float angular_vel = 0;
 
 
     
@@ -44,10 +48,10 @@
       odom_quat.w = tf_quat.getW();
 
 
-      geometry_msgs::TransformStamped odom_tf;
       odom_tf.header.stamp = ros::Time::now();
       odom_tf.header.frame_id = "odom";
       odom_tf.child_frame_id = "base_link";
+  
 
       odom_tf.transform.translation.x = x;
       odom_tf.transform.translation.y = y;
@@ -86,13 +90,29 @@
 
 
     public:
-    planningNode() {
+    robotNode() {
       nh = ros::NodeHandle();
 
       odom_pub = nh.advertise<nav_msgs::Odometry>("odom", 10);
-      pose_sub = nh.subscribe("pose", 10, &planningNode::poseCallback, this);
-      vel_sub = nh.subscribe("velocity", 10, &planningNode::velCallback, this);
+      pose_sub = nh.subscribe("pose", 10, &robotNode::poseCallback, this);
+      vel_sub = nh.subscribe("velocity", 10, &robotNode::velCallback, this);
+      
+      world_tf.header.stamp = ros::Time::now();
+      world_tf.header.frame_id = "world";
+      world_tf.child_frame_id = "odom";
 
+      world_tf.transform.rotation.x = 0;
+      world_tf.transform.rotation.y = 0;
+      world_tf.transform.rotation.z = 0;
+      world_tf.transform.rotation.w = 1;
+
+      world_tf.transform.translation.x = 0;
+      world_tf.transform.translation.y = 0;
+      world_tf.transform.translation.z = 0;
+
+      static_tf_broadcaster.sendTransform(world_tf);
+
+      ROS_INFO("Node has been set up");
     }
 
     void run() {
@@ -112,10 +132,10 @@
 
   int main(int argc, char** argv) {
     // initialize ros
-    ros::init(argc, argv, "path_planner_node");
-
+    ros::init(argc, argv, "robot_node");
+    ROS_WARN("initiating node");
     // initialize node object and run
-    planningNode node;
+    robotNode node;
     node.run();
 
     return 0;

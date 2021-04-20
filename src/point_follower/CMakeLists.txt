@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   stage_ros
   std_msgs
   tf
+  nav_core
 )
 
 
@@ -28,6 +29,9 @@ include_directories(
 )
 
 
-add_executable(path_planner src/path_planner.cpp)
+add_executable(robot src/robotNode.cpp)
+target_link_libraries(robot ${catkin_LIBRARIES})
+
+add_executable(path_planner src/astar.cpp)
 target_link_libraries(path_planner ${catkin_LIBRARIES})
 
