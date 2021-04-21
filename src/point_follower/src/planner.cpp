@@ -37,8 +37,8 @@ class Planner {
   visualization_msgs::Marker marker_msg;
 
   // robot pose params
-  float x = 25.58;
-  float y = 30.1;
+  float x = 11.107;
+  float y = 8.891;
   float th = 0;
   float xd, yd, thd;
   float t = 0;
@@ -132,7 +132,7 @@ class Planner {
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "path_planner_node");
-  ROS_INFO("initiating node");
+  ROS_INFO("initiating planner node");
   Planner planner;
   planner.run();
 

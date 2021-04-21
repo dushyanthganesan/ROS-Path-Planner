@@ -112,7 +112,7 @@
 
       static_tf_broadcaster.sendTransform(world_tf);
 
-      ROS_INFO("Node has been set up");
+      // ROS_INFO("Node has been set up");
     }
 
     void run() {
@@ -132,7 +132,7 @@
   int main(int argc, char** argv) {
     // initialize ros
     ros::init(argc, argv, "robot_node");
-    ROS_WARN("initiating node");
+    ROS_INFO("initiating robot node");
     // initialize node object and run
     robotNode node;
     node.run();
