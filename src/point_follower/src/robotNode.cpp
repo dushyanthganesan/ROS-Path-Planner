@@ -129,7 +129,6 @@
 
 
 
-
   int main(int argc, char** argv) {
     // initialize ros
     ros::init(argc, argv, "robot_node");

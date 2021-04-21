@@ -37,8 +37,8 @@ class Planner {
   visualization_msgs::Marker marker_msg;
 
   // robot pose params
-  float x = 5;
-  float y = 5;
+  float x = 25.58;
+  float y = 30.1;
   float th = 0;
   float xd, yd, thd;
   float t = 0;
@@ -98,7 +98,7 @@ class Planner {
     marker_msg.pose.orientation.z = quat.getZ();
     marker_msg.pose.orientation.w = quat.getW();
     marker_msg.type = visualization_msgs::Marker::CUBE;
-    marker_msg.color.g = 1;
+    marker_msg.color.b = 1;
     marker_msg.color.a = 1;
     marker_msg.scale.x = 0.2;
     marker_msg.scale.y = 0.2;
