@@ -35,5 +35,5 @@ target_link_libraries(robot ${catkin_LIBRARIES})
 add_executable(path_planner src/planner.cpp)
 target_link_libraries(path_planner ${catkin_LIBRARIES})
 
-add_executable(time src/timer.cpp)
+add_executable(timer src/timer.cpp)
 target_link_libraries(timer ${catkin_LIBRARIES})
