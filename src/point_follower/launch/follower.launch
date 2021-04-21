@@ -1,0 +1,12 @@
+<launch>
+
+  <node name="robot" pkg="point_follower" type="robot" />
+  <node name="path_planner" pkg="point_follower" type="path_planner" />
+  <node name="global_planner" pkg="global_planner" type="planner">
+    <rosparam command="load" file="$(find point_follower)/param/global_planner_params.yaml" />
+     <rosparam file="$(find point_follower)/param/global_costmap_params.yaml" command="load" />  
+  </node>
+  <arg name="map_file" default="$(find point_follower)/map/my_map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
+  
+</launch>

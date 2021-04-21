@@ -98,7 +98,7 @@
       vel_sub = nh.subscribe("velocity", 10, &robotNode::velCallback, this);
       
       world_tf.header.stamp = ros::Time::now();
-      world_tf.header.frame_id = "world";
+      world_tf.header.frame_id = "map";
       world_tf.child_frame_id = "odom";
 
       world_tf.transform.rotation.x = 0;

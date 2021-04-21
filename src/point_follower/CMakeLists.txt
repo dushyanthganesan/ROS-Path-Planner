@@ -32,6 +32,6 @@ include_directories(
 add_executable(robot src/robotNode.cpp)
 target_link_libraries(robot ${catkin_LIBRARIES})
 
-add_executable(path_planner src/astar.cpp)
+add_executable(path_planner src/planner.cpp)
 target_link_libraries(path_planner ${catkin_LIBRARIES})
 
