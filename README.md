@@ -5,5 +5,20 @@ Requirements:
 ROS Melodic
 
 install dependencies:
-
+```
 sudo apt install ros-melodic-navigation
+```
+
+To install project:
+```
+cd {WORKSPACE}
+git clone https://github.com/dushyanthganesan/ROS-Path-Planner.git
+catkin init
+catkin build
+```
+
+Running the project:
+```
+roslaunch point_follower follower.launch
+rosrun rviz rviz -d rviz/visualization.rviz
+```
