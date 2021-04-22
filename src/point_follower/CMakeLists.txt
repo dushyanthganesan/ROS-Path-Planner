@@ -37,3 +37,6 @@ target_link_libraries(path_planner ${catkin_LIBRARIES})
 
 add_executable(timer src/timer.cpp)
 target_link_libraries(timer ${catkin_LIBRARIES})
+
+# add_executable(goal_pub src/goal_pub.cpp)
+# target_link_libraries(goal_pub ${catkin_LIBRARIES})
